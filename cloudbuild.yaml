@@ -1,0 +1,16 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'app'
+      - 'deploy'
+      - '--project=core-waters-419214'
+      # Additional flags for deployment (e.g., service, image, etc.) for project1
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'app'
+      - 'deploy'
+      - '--project=woven-victor-419112'
+      # Additional flags for deployment (e.g., service, image, etc.) for project2
+
+# Add more steps for additional projects as needed
