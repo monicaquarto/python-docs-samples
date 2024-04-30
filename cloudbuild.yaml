@@ -1,18 +1,10 @@
 steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'app'
-      - 'deploy'
-      - '--project=core-waters-419214'
-      - '--account=cloudbuild@core-waters-419214.iam.gserviceaccount.com'
-      # Additional flags for deployment (e.g., service, image, etc.) for project1
-
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'app'
-      - 'deploy'
-      - '--project=woven-victor-419112'
-      - '--account=cloudbuild@core-waters-419214.iam.gserviceaccount.com'
-      # Additional flags for deployment (e.g., service, image, etc.) for project2
-
-# Add more steps for additional projects as needed
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'bash'
+  args: ['-c', 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy']
+  timeout: '1600s'
+  project: core-waters-419214
+  logsBucket: 'gs://core-waters-419214'
+  serviceAccount: 'projects/core-waters-419214/serviceAccounts/cloudbuild@core-waters-419214.iam.gserviceaccount.com'
+  options:
+    logging: GCS_ONLY
